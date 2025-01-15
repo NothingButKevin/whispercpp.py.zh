@@ -15,8 +15,8 @@ cimport numpy as cnp
 
 cdef int SAMPLE_RATE = 16000
 cdef char* TEST_FILE = 'test.wav'
-cdef char* DEFAULT_MODEL = 'tiny'
-cdef char* LANGUAGE = b'en'
+cdef char* DEFAULT_MODEL = 'base'
+cdef char* LANGUAGE = b'zh'
 cdef int N_THREADS = os.cpu_count()
 
 MODELS = {
@@ -72,8 +72,8 @@ cdef whisper_full_params default_params() nogil:
     cdef whisper_full_params params = whisper_full_default_params(
         whisper_sampling_strategy.WHISPER_SAMPLING_GREEDY
     )
-    params.print_realtime = True
-    params.print_progress = True
+    params.print_realtime = False
+    params.print_progress = False
     params.translate = False
     params.language = <const char *> LANGUAGE
     n_threads = N_THREADS
